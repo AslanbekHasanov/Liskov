@@ -9,8 +9,8 @@ namespace Liskov.Service
 {
     internal class Document
     {
-        private string date = "";
-        private readonly string path;
+        protected string date = "";
+        protected readonly string path;
 
         public Document(string path)
         {
