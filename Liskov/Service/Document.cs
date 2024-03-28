@@ -21,6 +21,7 @@ namespace Liskov.Service
         public void Open()
         {
             date = File.ReadAllText(path);
+            Console.WriteLine(date);
         }
 
         private void CheckExsist()
