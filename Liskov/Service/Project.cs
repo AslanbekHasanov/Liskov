@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection.Metadata;
 
 namespace Liskov.Service
@@ -20,6 +21,11 @@ namespace Liskov.Service
             {
                 document.Open();
             }
+
+            foreach (var document in writableDocuments)
+            {
+                document.Open();
+            }
         }
 
         public void SaveAll()
@@ -29,11 +35,29 @@ namespace Liskov.Service
                 document.Save();
             }
         }
+        public void AddDocument(WritableDocument writableDocument)
+        {
+            try
+            {
+                this.writableDocuments.Add(writableDocument);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unable to save read-only file. {ex.Message}");
+            }
+        }
 
-        public void AddDocument(Document document)=>
-            this.documents.Add(document);
+        public void AddDocument(Document document)
+        {
+            try
+            {
+                this.documents.Add(document);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unable to save read-only file. {ex.Message}");
+            }
+        }
 
-        public void AddDocumnet(WritableDocument writableDocument)=>
-            this.writableDocuments.Add(writableDocument);
     }
 }
